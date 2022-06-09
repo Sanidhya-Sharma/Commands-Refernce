@@ -1,0 +1,301 @@
+_____________________________________ WINDOWS BASH SCRIPTING______________________________________
+# Displaying on the screen, of characters entered at the keyboard
+$ ECHO ON
+
+# Not displaying on the screen, of characters entered at the keyboard
+$ ECHO OFF
+
+# Creating a new file with nothing inside 
+$ type nul > [FILENAME].[FORMAT]
+
+# Creating a file with status of ECHO
+$ ECHO > [FILENAME].[FORMAT]
+
+# Navigating to the given location 
+$ cd "folder/in/the/current/location"
+
+# Navigating to the parent folder 
+$ cd ../
+
+# check the current Directory 
+$ dir 
+
+# To find where the program is loacated 
+$ where [Programe_Name]
+
+# Create a Directory
+$ mkdir [Directory_Name]
+
+# Remove the directory permamently
+$ rmdir [Directory_Name]
+
+# Remove the file permanently
+$ rm [File_Name]
+
+# Get System Information
+$ systeminfo
+
+# Shutdown the System 
+$ shutdown /i
+
+# Detailed information about your current network adapter connection
+$ IPCONFIG
+
+# List of all active TCP connections from your computer
+$ NETSTAT
+
+# Running this command sends test packets over the network to the target system
+$ PING [url]
+
+# Path your internet traffic takes to get from your browser to a remote system like say "Google servers"
+$ TRACERT [URL]
+
+# Generate System Energy Report in HTML for Errors, Warnings and Information 
+$ powercfg -energy
+
+# Compare two ASCII files 
+$ Fc /a File1.txt File2.txt
+
+# Compare two Binary files 
+$ Fc /b Picture1.jpg Picture2.jpg
+
+# Computer associates certain file extensions with certain programs (Associations stored are displayed here)
+$ ASSOC 
+
+# Shedule task for a store batch file 
+SYNTAX : $ SCHTASKS /CREATE /SC DAILY /TN "FOLDERPATH\TASKNAME" /TR "C:\SOURCE\FOLDER\APP-OR-SCRIPT" /ST HH:MMExampleSCHTASKS 
+
+$ /CREATE /SC DAILY /TN "MyTasks\Notepad task" /TR "C:\Windows\System32\notepad.exe" /ST 11:00
+
+$ SCHTASKS /Create /SC ONSTART /TN "RUN_JUPYTER_NOTEBOOK" /TR "C:\Users\Sourabh Sharma\Desktop\Run Jupyter Notebook.bat" 
+
+for more SCHTASKS https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
+
+#-------------Change the colour of the console window 
+$ COLOR [background][foreground]
+
+0 = Black
+8 = Gray
+
+1 = Blue
+9 = Light Blue
+
+2 = Green
+A = Light Green
+
+3 = Aqua
+B = Light Aqua
+
+4 = Red
+C = Light Red
+
+5 = Purple
+D = Light Purple
+
+6 = Yellow
+E = Light Yellow
+
+7 = White
+F = Bright White
+------------------------------------------------------
+
+# Setting a variable 
+# /A – This switch is used if the value needs to be numeric in nature.
+$ SET /A x=5
+$ SET y="Hello"
+
+# OPERATORS
+# Tests the equality between two objects
+$ EQU
+
+# Tests the difference between two objects
+$ NEQ
+
+# Checks to see if the left object is less than the right operand
+$ LSS
+
+# Checks to see if the left object is less than or equal to the right operand
+$ LEQ
+
+# Checks to see if the left object is greater than the right operand
+$ GTR
+
+# Checks to see if the left object is greater than or equal to the right operand
+$ GEQ
+
+# Todays date --> Mon 12/28/2015
+$ %DATE%
+
+# Todays time --> 22:06:52.87
+$ %TIME%
+
+# Display current day-mont-year 
+$    @echo off 
+     echo/Today is: %year%-%month%-%day% 
+     goto :EOF 
+     setlocal ENABLEEXTENSIONS 
+     set t = 2&if "%date%z" LSS "A" set t = 1 
+
+     for /f "skip=1 tokens = 2-4 delims = (-)" %%a in ('echo/^|date') do ( 
+     for /f "tokens = %t%-4 delims=.-/ " %%d in ('date/t') do ( 
+         set %%a=%%d&set %%b=%%e&set %%c=%%f)) 
+     endlocal&set %1=%dd%&set %2=%mm%&set %3=%yy%&goto :EOF
+
+# Errorlevel tells us the responce status 
+# if Errorlevel is 1 there is an error and if its 0 there is no error
+
+# View the error level
+%ERRORLEVEL%
+
+# if and else for checking error level
+IF %errorlevel% NEQ 1 (
+    ECHO There is no error)
+ELSE (
+    ECHO There is a error)
+
+# Creating Array methord 1
+# Here "0" is the index and value at 0 index is "1"
+$ set a[0]=1
+
+# View the array value at index "0" --> 1
+$ echo %a[0]%
+
+# Looping over an array [Methrod 1]
+     @REM Creating an array
+$    set topic[0]=hello_1 
+     set topic[1]=hello_2 
+     set topic[2]=hello_3 
+     set topic[3]=hello_4
+     set topic[4]=hello_5 
+     set topic[5]=hello_6 
+
+     @REM This loops from 0 to 5 with increments of 1 and iterates with /l giving each value to "%%n"
+     for /l %%n in (0,1,5) do ( 
+     echo !topic[%%n]! 
+     )
+
+# Looping over an array to find lengeth of it [methord 2]
+$    @echo off 
+
+    @REM Creating an array
+    set Arr[0]=1 
+    set Arr[1]=2 
+    set Arr[2]=3 
+    set Arr[3]=4 
+
+    @REM Setting the value to zero
+    set "x = 0" 
+
+    :SymLoop 
+        if defined Arr[%x%] ( 
+        call echo %%Arr[%x%]%% 
+        set /a "x+=1"
+        GOTO :SymLoop 
+        )
+
+    echo "The length of the array is" %x%
+
+# Creating Array Methord 2
+$    @echo off 
+     set list=1 2 3 4 
+     (for %%a in (%list%) do ( 
+     echo %%a 
+     ))
+
+# If and Else Statements 
+    @echo off 
+    SET str1 = String1 
+    SET str2 = String2 
+
+    if %str1%==String1 (
+        echo "The value of variable String1"
+        ) 
+    else (
+        echo "Unknown value"
+        ) 
+    if %str2%==String3 (
+        echo "The value of variable c is String3"
+        ) 
+    else (
+        echo "Unknown value"
+        )
+
+# IF DEFINED : This is special case of if where it check if the variable is defined or not
+$   @REM initializing variables
+    SET str1 = String1
+
+    @REM Checking if st1 is defined or not
+    if defined str1 echo "Variable str1 is defined"  
+
+    @REM Checking if st3 is defined or not
+    if defined str3 (
+      echo "Variable str3 is defined") 
+    else (
+      echo "Variable str3 is not defined")
+
+# IF EXIST : Another special case for the ‘if’ statement is the "if exists ", which is used to test for the existence of a file
+$   @echo off 
+
+    @REM Checking if the file in directory exist or not
+    if exist C:\set2.txt echo "File exists" 
+
+    @REM Checking if the file in directory exist or not
+    if exist C:\set3.txt (
+        echo "File exists") 
+    else (
+        echo "File does not exist")
+
+
+# FUNCTIONS:
+
+$    @REM This is a function called as "Display"
+    :Display 
+        SET /A index=2 
+        echo The value of index is %index% 
+    EXIT /B 0
+
+$   @REM Calling a function is done by using CALL :<FUNCTION_NAME>
+    CALL :Display 
+    EXIT /B %ERRORLEVEL% 
+
+# FUNCTIONS with parameters :
+
+$   @REM Calling function with paremters 
+    CALL :Display 5 , 10
+    EXIT /B %ERRORLEVEL%
+
+    :Display
+        echo The value of parameter 1 is %~1
+        echo The value of parameter 2 is %~2
+    EXIT /B 0
+
+$   @REM Calling function with return values 
+    CALL :SetValue value1,value2
+    echo %value1%
+    echo %value2%
+    EXIT /B %ERRORLEVEL%
+
+    :SetValue
+        set "%~1 = 5"
+        set "%~2 = 10"
+    EXIT /B 0
+
+# FUNCTION Local variables using SETLOCAL and ENDLOCAL
+    @echo off
+
+    @REM Declaring global variable
+    set str = Outer
+    echo %str%
+    
+    @REM Calling the SetValue function
+    CALL :SetValue str
+    echo %str%
+    EXIT /B %ERRORLEVEL%
+
+    @REM SetValue function with local str
+    :SetValue
+        SETLOCAL
+            set str = Inner
+            set "%~1 = %str%"
+        ENDLOCAL
+    EXIT /B 0
