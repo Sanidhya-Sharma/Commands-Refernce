@@ -1,0 +1,43 @@
+# Install pyopenssl
+$ pip3 install pyopenssl
+
+# ------------------------------------------------------------------------Adhoc SSL Certificate:----------------------------------------------------------------------------------
+# Adhoc self signed certificates in flask have one great disadvantage, once we reload our flask server 
+# (when debug=True, it will be upon each saved code change), our certificates get regenerated and web browser will prompt user to accept the risk once more.
+# Obviously not ideal solution even for users that in general are willing to trust your self signed certs. For browser to remember our certificates,
+# we would need to have self signed key pair (ideally with very long expiration time).
+
+# The Adhoc is the easiet way to put an ssl certificate but each time the ssl certificate changes hence you have no control over it
+$ if __name__ == "__main__":
+    app.run(debug=True, ssl_context='adhoc')
+
+# ------------------------------------------------------------------------SSL via self signed key pair:----------------------------------------------------------------------------------
+# the commad usually does two thing first it takes a bunh details from you and secondly it saves two files on as certifcate and other as private key (certifcate.pem and private_key.pem)
+
+# you can use them in flask to make a self certified SSL Certificate 
+$ if __name__ == "__main__":
+$        app.run(debug=True, ssl_context=('cert.pem', 'priv_key.pem'))
+
+# before running the commands below on your command prompt please give the location of the openssl.cnf file
+$ set OPENSSL_CONF=c:/libs/openssl-0.9.8k/openssl.cnf
+
+# to validate it you can type:
+$ echo %OPENSSL_CONF%
+
+# We have created keypair valid for 10 years. cert.pem is the certificate file and priv_key.pem is corresponding private key.
+$ $ openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem keyout priv_key.pem -days 3650
+
+
+# Generate Private Key and Certificate using RSA 256 encryption (4096-bit key)
+$ openssl req -x509 -newkey rsa:4096 -keyout privatekey.pem -out certificate.pem -days 365
+# Alternatively, setting the "-newkey" parameter to "rsa:2048" will generate a 2048-bit key.
+
+# Generate PKCS#12 (P12) file for cert; combines both key and certificate together
+$ openssl pkcs12 -export -inkey privatekey.pem -in certificate.pem -out cert.pfx
+
+# Generate SHA256 Fingerprint for Certificate and export to a file
+$ openssl x509 -noout -fingerprint -sha256 -inform pem -in certificate.pem >> fingerprint.txt
+
+# Generate SHA1 Fingerprint for Certificate and export to a file
+$ openssl x509 -noout -fingerprint -sha1 -inform pem -in certificate.pem >> fingerprint.txt
+# FYI, it's best practice to use SHA256 instead of SHA1 for better security, but this shows how to do it if you REALLY need to.
