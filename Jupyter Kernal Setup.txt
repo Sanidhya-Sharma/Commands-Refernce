@@ -1,0 +1,35 @@
+------------------------------------------------------------------- Jupyter Notebook (Kernal) ------------------------------------------------------------
+
+Please open Anaconda Prompt in Admin mode 
+NOTE* <python environment> --> enviorment name 
+
+# Check the number of available kernals 
+$ jupyter kernelspec list 
+
+# Add a new enviorment (Anaconda prompt) -- > creates a JSON file in C:\Users\<USER NAME>\AppData\Roaming\Jupyter\Kernels\<<python environment>>\Kernel.json
+$ python -m ipykernel install --user --name <python environment> --display-name "Python (<python environment>)"
+
+# Reading the Kernel.json JSON FILE
+{
+ "argv": [
+  "G:\\Program_files\\Anaconda\\envs\\tf_gpu\\python.exe",      ---------> Location for custom enviorment python 
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "Python (tf_gpu)",                             ----------> Name of enviorment "Python(<enviorment name>)"
+ "language": "python"
+}
+
+# Remove the kernal aviable to jupyter notebook 
+$ jupyter kernelspec remove [enviorment_name]
+
+
+# Facing problems with jupyter notebook after adding tf_gpu ENVS 
+pip install --upgrad ipykernel
+pip install notebook --upgrade 
+conda install tornado --update
+pip uninstall pyzmq
+pip install pyzmq
+conda update -n base -c defaults conda

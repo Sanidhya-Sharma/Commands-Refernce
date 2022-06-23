@@ -1,0 +1,176 @@
+---------------------------------------------------------------------------------GIT HUB-----------------------------------------------------------------------------------------
+
+# Note : Currently the "master" is being replaced with "main" as a default repository
+# To overcome the issue of master not being the default repository please use the following command if you start with master and main is your default repository
+    
+    # Rename your current repository from master to main
+    git branch -m master main 
+    
+    # Push the staged data to main 
+    git push -u origin main 
+    
+    # Reset head to commit of main 
+    git remote set-head origin main
+
+-------------------------------------------------------------------------
+SETUP
+Configuring user information used across all local repositories
+-------------------------------------------------------------------------
+
+# Adding local and global name in git CLI
+LOCAL = $ git config --local user.name "[name]"
+GLOBAL = $ git config --global user.name "[name]"
+
+# Adding local and global email in git CLI 
+LOCAL = $ git config --local user.email "[email]"
+GLOBAL = $ git config --global user.email "[email]"
+
+# Setting Global UI color for Git CLI
+$ git config --global color.ui auto
+
+-------------------------------------------------------------------------
+Repository Setup 
+Configuring New Respository and cloning from git 
+-------------------------------------------------------------------------
+
+# Check the current repository (pull and push)
+$ git remote -v
+
+# add a new remote Respository : (Just empty repository)
+$ git remote add origin "git@your.git.repo.example.com:user/repository2.git"
+
+# Setting set-url will edit the url of existing remote repository (Just empty repository)
+$ git remote set-url origin "git@your.git.repo.example.com:user/repository2.git"
+
+# Cloning someone/your repository 
+$ git clone "git@someones.git.repo.example.com:user/repository2.git"
+
+# Cloning someones repository into a folder "ClonedRepo" if the folder the does not exist new one is created automatically
+$ git clone "git@someones.git.repo.example.com:user/repository2.git" ClonedRepo
+
+-------------------------------------------------------------------------
+SETUP & INIT
+Configuring user information, initializing and cloning repositories
+-------------------------------------------------------------------------
+
+# Git initialization
+$ git init 
+
+# Creating a Readme file 
+$ touch README.md
+
+# Adding a Readme file 
+$ git add README.md
+
+# Creating a LICENSE file 
+$ touch LICENSE.txt
+
+# Add a LICENCE file 
+$ git add LICENSE
+
+# Git stage the changes 
+$ git add [filename]
+ 
+ or 
+
+# Get status of changes done which are not yet staged 
+$ git status
+
+# Pull Changes from the remote master/main 
+# git pull origin master/main
+
+# Git stage all the changes at once 
+$ git add .
+
+# Unstage a file while retaining the changes in working directory
+$ git reset [filename]
+
+# Diff of what is changed but not staged
+$ git diff
+
+# Diff of what is staged but not yet commited
+$ git diff --staged
+
+# Commit your staged content as a new commit snapshot
+$ git commit -m "[discriptive message]"
+
+# will push your code to the master branch of the remote repository defined with origin and -u let you point your current local branch to the remote master branch:
+$ git push -u origin master/main
+
+# Force your local changes to the remote origin master/main repository [Avoid this unless nescessary]
+$ git push -f origin master
+
+# Remove .git folder 
+$ rm rf .git 
+
+# clear staging area, rewrite working tree from specified commit [PLEASE KEEP A BACKUP BEFORE APPLYING]
+$ git reset --hard [commit-ID]
+
+# Save modified and staged changes
+$ git stash
+
+# list stack-order of stashed file changes
+$ git stash list
+
+# write working from top of stash stack
+$ git stash pop
+
+# discard the changes from top of stash stack
+$ git stash drop
+
+-------------------------------------------------------------------------
+BRANCH & MERGE
+Isolating work in branches, changing context, and integrating changes
+-------------------------------------------------------------------------
+
+# To see all remote branches and List all remote branches. 
+$ git branch -a
+
+# To see remote branches, run this command:
+git branch -r
+
+# move from one branch to another or to master 
+$ git checkout [branch_name]/[master]
+
+# Merge your branch with master 
+    
+    # Move to the master/main branch 
+    $ git checkout master/main
+
+    # Get the current changes in the master/main
+    $ git pull origin master/main
+
+    # Merge with branch 
+    $ git merge <branch_name>
+
+# Rename a branch 
+$ git branch -m <old_name> <new_name>
+
+# "-d" Delete the specified branch. This is a “safe” operation in that Git prevents you from deleting the branch if it has unmerged changes.
+# "-D" Force delete the specified branch, even if it has unmerged changes. This is the command to use if you want to permanently throw away all of the commits associated with a particular line of development.
+
+# Safe Delete a branch 
+$ git branch -d <branch>
+
+# Force Delete a branch 
+$ git branch -D <branch>
+
+-------------------------------------------------------------------------
+INSPECT & COMPARE
+Examining logs, diffs and object information
+-------------------------------------------------------------------------
+
+# Show the commit history for the currently active branch
+$ git log
+
+# Show the commits on branchA that are not on branchB
+$ git log branchB..branchA
+
+# Show the commits that changed file, even across renames
+$ git log --follow [file]
+
+# Show the diff of what is in branchA that is not in branchB
+$ git diff branchB...branchA
+
+# Show any object in Git in human-readable format
+$ git show [SHA]

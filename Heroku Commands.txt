@@ -1,0 +1,126 @@
+
+--------------------------------------------------------------------------------------HEROKU CLI-----------------------------------------------------------------------------------
+# Got to the location where the where the project is with the normal command prompt windows, got into the root directory of the project/ wokring directory
+
+# Get the installed version of heroku 
+$ heroku --version 
+
+# Getting the status and issues with heroku cli 
+$ heroku status
+
+# Getting local node version 
+$ heroku local:version
+
+# Check all the deployed apps with user 
+$ heroku apps
+
+# Destroy the app 
+$ heroku apps:destroy
+ --> $ heroku apps:destroy --app [appName] --confirm [appName]
+
+# Login in into Heroku (opens a heroku website) [ALIASES of $ heroku auth:login]
+$ heroku login 
+
+# Login into Heroku (Ask for username and passwords in heroku CLI itself)
+$ heroku login -i
+
+# Logout of Heroku [ALIASES of $ heroku auth:logout]
+$ heroku logout
+
+# Check who is current user in heroku cli [ALIASES of $ heroku auth:whoami]
+$ heroku whoami
+
+# Retrives the current running apps information/Details 
+$ heroku apps:info
+
+# Check the number of free dyno hours available in free account 
+$ heroku ps -a [appName]
+
+# Display maintainance status of the current app 
+$ heroku maintenance
+
+# Put the app in maintaince status 
+$ heroku maintenance:on
+
+# Remove the app from the maintaince mode 
+$ heroku maintenance:off
+
+# Rename the current app (Renames the existing app)
+$ heroku apps:rename [newappName]
+
+# Opens the deployed app in the web browser ( adding /endpoint after appName will be added to URL)
+$ heroku open -a [appName]
+
+# Work under already created app (if created a app at heroku website)
+$ heroku git:remote -a [appName]
+
+# Check the lastest stacks avaialble in Heroku ( STACK : heroku-18, heroku-20, heroku-22)
+$ heroku apps:stacks
+
+# Set the Stack of the application (Change only happens after re-deployment after git push)
+$ heroku apps:stacks:set [STACK]
+
+# Display all the buildpacks for an app (Already Deployed) (BUILDPACK: heroku/python)
+$ heroku buildpacks
+
+# Get Buildpack information 
+$ heroku buildpacks:info [BUILDPACK]
+
+# Getting the version of a specific builpack 
+$ heroku buildpacks:versions [BUILDPACK]
+
+# Setting a build pack or adding a buildpacks
+$ heroku buildpacks:set [BUILDPACK] 
+or 
+$ heroku buildpacks:add [BUILDPACK]
+
+# Remove a specific builpack 
+$ heroku buildpacks:remove [BUILDPACK]
+
+# Clear all builpacks 
+$ heroku buildpacks:clear
+
+# List who has access to the application 
+$ heroku access
+
+# Add new users to the App for collabaration 
+$ heroku access:add [EMAIL]
+ --> EG: $ heroku access:add [EMAIL] --app [appName] --permissions deploy,manage,operate
+
+# Remove users from the collabaration team 
+$ heroku access:remove [EMAIL]
+
+# update existing collaborators on an team app (usually for changing permission)
+$ heroku access:update [EMAIL]
+ --> EG: $ heroku access:update [EMAIL] --app [appName] --permissions deploy,manage,operate
+
+# Give the hosted URL of application 
+$ heroku domains
+
+# Git init the file (if already done using github skip this)
+$ git init
+
+# Clear Heroku Staged cache
+$ heroku buildpacks:clear
+$ heroku buildpacks:set heroku/python
+
+# Create an App without name by default heroku will deside a random name
+$ heroku create
+
+# Create a new app (if not create app in the heroku website) (automaticaly adds remote) [ALIASES of $ heroku apps:create] (https://appName.herokuapp.com/ | https://git.heroku.com/appName.git)
+$ heroku create [appName]
+
+# Adding the git remote to heroku cli (For Existing App)
+$ heroku git:remote -a [appName]
+
+# Adding the files
+$ git add .
+
+# Committing the files 
+$ git commit -am "blah blah"
+
+# Pushing the files
+$ git push heroku master
+
+# Get the logs of the running application 
+$ heroku logs --tail

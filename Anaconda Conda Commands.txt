@@ -1,0 +1,117 @@
+
+-------------------------------------------------------------------------------------------------ANACONDA-CONDA----------------------------------------------------------------------------
+""" 
+Best practice includes to install packages via conda and only use pip when the perticular package is not available as conda uses Anaconda cloud (Conda-forge, bioconda) with over 1500 
+packages but pip installs from the PYPI (Python Package Index) and GIT with over 1,50,000 packages
+
+conda - Package Maneger + Envioment Maneger
+pip - Package Maneger
+"""
+
+""" 
+# All the packages available in Anaconda 
+--> https://docs.anaconda.com/anaconda/packages/pkg-docs/
+"""
+
+# Show version information for the current active Python
+$ python --version
+
+# Show the locations of all versions of Python that are currently in the path
+Windows : $ where python 
+Linux/Mac : $ which -a python 
+
+# Get infor about the current interpreter and all related details 
+$ conda info 
+
+# Use conda to search for a package
+$ conda search <PACKAGENAME>
+
+# Install packages from the Anaconda Cloud, Conda-forge and bioconda
+$ conda install <PACKAGENAME>
+
+# Install package in conda from single channel (Using --channel)
+$ conda install <PACKAGENAME> --channel conda-forge 
+
+# Install packages from multiple channels 
+$ conda install <PACKAGENAME> --channel conda-forge --channel bioconda
+
+# Install a new package in a different environment 
+$ conda install --name <ENVIORMENT-NAME> <PACKAGENAME>
+
+# Remove one or more packages from a specific environment
+$ conda remove --name <ENVIORMENT-NAME> <PACKAGENAME-1> <PACKAGENAME-2>
+
+# Update any installed program
+$ conda update <PACKAGENAME>
+
+# Create a new conda environment from a list of specified packages.
+$ conda create 
+
+# Display all current packages that conda is aware of installed 
+$ conda list
+
+# Upgrade Conda Package & Enviorment Maneger 
+$ conda update -n base -c defaults conda
+
+# Update conda to the current version
+$ conda update conda
+
+# Run an executable in a conda environment.
+$ 
+
+# Save environment to a text file 
+$ conda list --explicit > requirements.txt
+
+-------------------------------------------------------------------------------CONDA VIRTUAL ENVIORMENTS-------------------------------------------------------------------------------
+# Here the [myenv] is aliases for your env folder 
+
+# Creating a new ENVIORMENTS with python version 
+$ conda create -n [myenv] python=3.9
+
+# Viewing the list of eviorments 
+$ conda info --envs
+or 
+$ conda env list
+
+# Activate Enviorments
+Windows : $ conda activate [myenv]
+Linux/Mac : $ source activate [myenv]
+
+
+# Deactivate Enviorments 
+Windows : $ conda decativate [myenv]
+Linux/Mac : $ source deactivate [myenv]
+
+# viewing list of packages installed 
+$ conda list -n [myenv]
+or 
+# view all the installed packages in the active enviorment 
+$ conda list 
+
+# Delete an environment and everything in it
+$ conda remove --name [myenv] --all
+
+# Make exact copy of an environment
+$ conda create --clone <ENV-NAME> --name <ENV-NAME>-2
+
+
+----------------------------------------------------------------------------------------Requirements.txt--------------------------------------------------------------------------
+# Creating conda packages list (Might have compatibility issue with non-Anaconda applications)
+$ conda list > requirements.txt
+
+# Always use this it avoids the #links comming in the requirements text file 
+$ pip list --format=freeze > requirements.txt
+
+----------------------------------------------------------------------------------Anaconda Enviomental Variables---------------------------------------------------------------------------
+
+PATH (mandatory)
+G:\Program_files\Anaconda
+G:\Program_files\Anaconda\Library\mingw-w64\bin
+G:\Program_files\Anaconda\Library\usr\bin
+G:\Program_files\Anaconda\Scripts
+
+ENV PATH (optional)
+G:\Program_files\Anaconda\envs
+G:\Program_files\Anaconda\envs\tf_gpu
+G:\Program_files\Anaconda\envs\tf_gpu\Library\bin
+G:\Program_files\Anaconda\envs\tf_gpu\Scripts
