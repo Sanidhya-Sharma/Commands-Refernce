@@ -45,6 +45,18 @@ $ heroku maintenance:on
 # Remove the app from the maintaince mode 
 $ heroku maintenance:off
 
+# Restart App/ restart Dyno (already deployed)
+$ heroku restar -a [appName]
+
+# Restart all Apps/ Dynos 
+$ heroku restart
+
+# Open your App in browser curretly deployed 
+$ heroku open
+
+# Check Active Dynos 
+$ heroku ps
+
 # Rename the current app (Renames the existing app)
 $ heroku apps:rename [newappName]
 
@@ -97,6 +109,12 @@ $ heroku access:update [EMAIL]
 # Give the hosted URL of application 
 $ heroku domains
 
+# Check the previous version of the app deployed with their releases (Release: v1, v2, v3 etc)
+$ heroku releases
+
+# Roll back to that perticular release 
+heroku rollback [RELEASE #]
+
 # Git init the file (if already done using github skip this)
 $ git init
 
@@ -124,3 +142,6 @@ $ git push heroku master
 
 # Get the logs of the running application 
 $ heroku logs --tail
+
+# Real time logs HTML 
+$ heroku logs -t
