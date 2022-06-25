@@ -46,7 +46,7 @@ $ heroku maintenance:on
 $ heroku maintenance:off
 
 # Restart App/ restart Dyno (already deployed)
-$ heroku restar -a [appName]
+$ heroku restart -a [appName]
 
 # Restart all Apps/ Dynos 
 $ heroku restart
@@ -121,6 +121,9 @@ $ git init
 # Clear Heroku Staged cache
 $ heroku buildpacks:clear
 $ heroku buildpacks:set heroku/python
+
+# Check the current connected remote 
+$ git remote show heroku
 
 # Create an App without name by default heroku will deside a random name
 $ heroku create
